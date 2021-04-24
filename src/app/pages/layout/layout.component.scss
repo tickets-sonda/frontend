@@ -1,0 +1,20 @@
+@import "./../../../styles.scss";
+
+.grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: $width-sidenav 1fr;
+  grid-template-rows: 140px 1fr;
+  grid-template-areas:
+    "header"
+    "main"
+    "sidenav";
+  height: 100vh;
+  overflow-x: hidden;
+}
+
+.main {
+  grid-area: main;
+  background-color: $color-athens-gray;
+  color: $color-fiord;
+}

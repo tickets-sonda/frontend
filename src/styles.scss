@@ -1,1 +1,47 @@
 /* You can add global styles to this file, and also import other style files */
+
+$blue: #2196f3;
+$green: #8bc34a;
+$gray: #8ea2ac;
+
+$font: "Roboto", sans-serif;
+$color-fiord: #0071ad;
+$color-white: #fff;
+$color-athens-gray: #eaedf1;
+$color-catskill-white: #f9fafc;
+$color-abbey: #777;
+$color-mischka: #dadae3;
+$color-java: #1bbae1;
+$color-mine-shaft: #333;
+$color-zest: #e67e22;
+$color-jungle-green: #27ae60;
+$color-cinnabar: #e74c3c;
+$color-amethyst: #af64cc;
+$color-transparent: rgba(255, 255, 255, 0.5);
+$color-alto: #d3d3d3;
+
+$box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+
+$height-header: 90px;
+$height-footer: 50px;
+$width-sidenav: 240px;
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: $font;
+}
+
+@mixin profile-avatar {
+  background-image: url("https://images.pexels.com/photos/1680172/pexels-photo-1680172.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+@mixin content-width {
+  width: calc(100% - $width-sidenav);
+}

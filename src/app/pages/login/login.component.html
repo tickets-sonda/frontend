@@ -1,0 +1,31 @@
+<div class="login-form">
+  <h1>Login</h1>
+  <form method="POST">
+    <select name="miselect" [(ngModel)]="user.tipo">
+      <option
+        [value]="tipoUsuario.idTipoUsuario"
+        *ngFor="let tipoUsuario of tiposUsuarios"
+      >
+        {{ tipoUsuario.NombreTipoUser }}
+      </option>
+    </select>
+    <input
+      type="text"
+      name="username"
+      placeholder="Username"
+      [(ngModel)]="user.name"
+      required
+    />
+    <input
+      type="password"
+      name="password"
+      placeholder="Password"
+      [(ngModel)]="user.password"
+      required
+    />
+    <input
+      type="submit"
+      (click)="signIn(user.tipo, user.name, user.password)"
+    />
+  </form>
+</div>

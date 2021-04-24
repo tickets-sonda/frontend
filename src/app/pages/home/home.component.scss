@@ -1,0 +1,33 @@
+@import "./../../../styles.scss";
+:host {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 350px);
+  grid-gap: 60px;
+  justify-content: center;
+}
+.card {
+  max-height: 200px;
+  display: inherit;
+  grid-template-rows: 50% 50%;
+  box-shadow: $box-shadow;
+  &__title {
+    font-size: 23pt;
+    text-align: center;
+    font-weight: 500;
+  }
+  &__button {
+    width: 80%;
+    height: 50%;
+    place-self: center;
+    padding: 15px;
+    background-color: #535b63;
+    border: 0;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-weight: bold;
+    color: #ffffff;
+    &:hover {
+      background-color: $color-fiord;
+    }
+  }
+}

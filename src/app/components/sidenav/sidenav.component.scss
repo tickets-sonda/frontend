@@ -1,0 +1,65 @@
+@import "./../../../styles.scss";
+
+.sidenav {
+  position: fixed;
+  grid-area: sidenav;
+  height: 100%;
+  overflow-y: auto;
+  background-color: $color-fiord;
+  color: $color-white;
+  width: $width-sidenav;
+  transition: all 0.6s ease-in-out;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+  z-index: 2;
+
+  &__brand {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    height: 98px;
+    background-color: rgba(0, 0, 0, 0.15);
+  }
+
+  &__sections {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.1);
+    min-height: 295px;
+    max-height: 79vh;
+    &--link {
+      width: 100%;
+      padding: 15px;
+      box-sizing: border-box;
+      text-align: center;
+      cursor: pointer;
+      color: #ffffff;
+      text-decoration: none;
+      display: flex;
+      justify-content: end;
+      align-items: flex-end;
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+      span {
+        margin-right: 5px;
+      }
+    }
+  }
+
+  &__logout {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    &--button {
+      @extend .sidenav__sections--link;
+      position: absolute;
+      bottom: 20px;
+      &:hover {
+        background-color: white;
+        color: $color-fiord;
+      }
+    }
+  }
+}

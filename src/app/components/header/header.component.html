@@ -1,0 +1,18 @@
+<header class="header">
+  <div class="header__info">
+    <h1 class="header__info--name">
+      <strong>Nombre: </strong> {{ currentUser.nombre | titlecase }}
+      {{ currentUser.paterno | titlecase }}
+      {{ currentUser.materno | titlecase }}
+    </h1>
+    <h1 class="header__info--company">
+      <strong>Empresa: </strong> {{ currentUser.empresa | titlecase }}
+    </h1>
+    <h1 class="header__info--job">
+      <strong>Puesto: </strong> {{ currentUser.puesto | titlecase }}
+    </h1>
+  </div>
+  <figure>
+    <img src="assets/logo.png" alt="Sonda logo" />
+  </figure>
+</header>

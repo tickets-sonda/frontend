@@ -1,0 +1,159 @@
+<h1>{{ paramId | titlecase }}</h1>
+<hr />
+<div class="container">
+  <!-- form estado -->
+  <form class="form" *ngIf="paramId == 'estado'" method="POST">
+    <label class="form-label" for="name">Nombre</label>
+    <input
+      class="form-input"
+      type="text"
+      [(ngModel)]="estado.Nombre"
+      name="nombre"
+    />
+    <div class="buttons">
+      <input
+        class="form-button"
+        type="submit"
+        value="Registrar"
+        (click)="registrarEstado(estado.Nombre)"
+      />
+      <!-- <input
+        class="form-button cancelar"
+        type="submit"
+        value="Cancelar"
+        backButton
+      /> -->
+      <button
+        class="form-button cancelar"
+        (click)="cancelar()"
+        href="javascript:void(0)"
+      >
+        Cancelar
+      </button>
+    </div>
+  </form>
+  <!-- form empleado -->
+  <form class="form" *ngIf="paramId == 'empleado'" method="POST">
+    <div class="form__name">
+      <label class="form-label" for="nombre">Nombre</label>
+      <input
+        class="form-input"
+        type="text"
+        [(ngModel)]="empleado.Nombre"
+        name="nombre"
+        id="nombre"
+      />
+      <label class="form-label" for="paterno">Paterno</label>
+      <input
+        class="form-input"
+        type="text"
+        [(ngModel)]="empleado.Paterno"
+        name="paterno"
+        id="paterno"
+      />
+      <label class="form-label" for="materno">Materno</label>
+      <input
+        class="form-input"
+        type="text"
+        [(ngModel)]="empleado.Materno"
+        name="Materno"
+        id="materno"
+      />
+    </div>
+    <label class="form-label" for="fechaIngreso">Fecha Ingreso</label>
+    <input
+      class="form-input"
+      type="date"
+      [(ngModel)]="empleado.FechaIngreso"
+      name="fechaIngreso"
+      id="fechaIngreso"
+    />
+    <label class="form-label" for="telefono">Telefono</label>
+    <input
+      class="form-input"
+      type="text"
+      [(ngModel)]="empleado.Telefono"
+      name="Telefono"
+      id="telefono"
+    />
+    <label class="form-label" for="municipio">Municipio</label>
+    <select
+      class="form-input"
+      id="municipio"
+      name="miselect"
+      [(ngModel)]="empleado.idMunicipio"
+    >
+      <option
+        [value]="municipio.idMunicipio"
+        *ngFor="let municipio of listaMunicipios"
+      >
+        {{ municipio.NombreMunicipio }}
+      </option>
+    </select>
+    <label class="form-label" for="direccion">Dirección</label>
+    <input
+      class="form-input"
+      type="text"
+      [(ngModel)]="empleado.Direccion"
+      name="Direccion"
+      id="direccion"
+    />
+    <label class="form-label" for="sueldo">Sueldo</label>
+    <input
+      class="form-input"
+      type="text"
+      [(ngModel)]="empleado.Sueldo"
+      name="Sueldo"
+      id="sueldo"
+    />
+    <label class="form-label" for="email">Email</label>
+    <input
+      class="form-input"
+      type="text"
+      [(ngModel)]="empleado.Email"
+      name="Email"
+      id="email"
+    />
+    <label class="form-label" for="fechaNacimiento">Fecha Nacimiento</label>
+    <input
+      class="form-input"
+      type="date"
+      [(ngModel)]="empleado.FechaNacimiento"
+      name="fechaNacimiento"
+      id="fechaNacimiento"
+    />
+    <label class="form-label" for="MetodoTransporte">Metodo Transporte</label>
+    <input
+      class="form-input"
+      type="text"
+      [(ngModel)]="empleado.MetodoTransporte"
+      name="MetodoTransporte"
+      id="MetodoTransporte"
+    />
+    <label class="form-label" for="sexo">Sexo</label>
+    <input
+      class="form-input"
+      type="text"
+      [(ngModel)]="empleado.Sexo"
+      name="sexo"
+      id="sexo"
+    />
+    <div class="buttons">
+      <input
+        class="form-button"
+        type="submit"
+        value="Registrar"
+        (click)="registrarEmpleado(empleado)"
+      />
+      <button
+        class="form-button cancelar"
+        (click)="cancelar()"
+        href="javascript:void(0)"
+      >
+        Cancelar
+      </button>
+    </div>
+  </form>
+</div>
+
+<!-- <ng-template #estado> </ng-template> -->

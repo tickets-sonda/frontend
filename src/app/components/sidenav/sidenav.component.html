@@ -1,0 +1,24 @@
+<aside class="sidenav">
+  <div class="sidenav__brand">
+    <h1>{{ location | titlecase }}</h1>
+  </div>
+  <div class="sidenav__sections">
+    <a
+      *ngFor="let opcion of opcionesMenu"
+      class="sidenav__sections--link"
+      routerLink="/{{ opcion.ruta }}"
+      routerLinkActive="router-link-active"
+      ><span [class]="opcion.clase"> {{ opcion.icono }} </span
+      >{{ opcion.nombre }}</a
+    >
+  </div>
+  <div class="sidenav__logout">
+    <a
+      class="sidenav__logout--button"
+      [routerLink]="['/login']"
+      routerLinkActive="active"
+      (click)="logOut()"
+      ><span class="material-icons-outlined">logout</span>Cerrar sesión</a
+    >
+  </div>
+</aside>
