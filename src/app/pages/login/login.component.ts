@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
     this.dataService
       .login(usertype, username, password)
       .subscribe((resp: Usuario) => {
-        console.log(resp);
+        console.log('resp', resp);
         if (resp) {
           if (resp.idUser) {
             sessionStorage.setItem('NoEmpleado', resp.NoEmpleado.toString());
@@ -35,10 +35,12 @@ export class LoginComponent implements OnInit {
             sessionStorage.setItem('Materno', resp.Materno);
             sessionStorage.setItem('NombreCliente', resp.NombreCliente);
             sessionStorage.setItem('NombreTipoUser', resp.NombreTipoUser);
-            sessionStorage.setItem(
-              'idEmpresaCliente',
-              resp.idEmpresaCliente.toString()
-            );
+            if (resp.idEmpresaCliente) {
+              sessionStorage.setItem(
+                'idEmpresaCliente',
+                resp.idEmpresaCliente.toString()
+              );
+            }
             sessionStorage.setItem(
               'idTipoUsuario',
               resp.idTipoUsuario.toString()

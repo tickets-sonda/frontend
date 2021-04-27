@@ -5,7 +5,7 @@
       {{ currentUser.paterno | titlecase }}
       {{ currentUser.materno | titlecase }}
     </h1>
-    <h1 class="header__info--company">
+    <h1 class="header__info--company" *ngIf="currentUser.empresa !== 'null'">
       <strong>Empresa: </strong> {{ currentUser.empresa | titlecase }}
     </h1>
     <h1 class="header__info--job">

@@ -154,6 +154,40 @@
       </button>
     </div>
   </form>
+  <!-- form municipio -->
+  <form class="form" *ngIf="paramId == 'municipio'" method="POST">
+    <label class="form-label" for="name">Nombre</label>
+    <input
+      class="form-input"
+      type="text"
+      [(ngModel)]="municipio.Nombre"
+      name="nombre"
+    />
+    <label class="form-label" for="estado">Estado</label>
+    <select
+      class="form-input"
+      id="estado"
+      name="miselect"
+      [(ngModel)]="municipio.idEstado"
+    >
+      <option [value]="estado.idEstado" *ngFor="let estado of listaEstados">
+        {{ estado.Nombre }}
+      </option>
+    </select>
+    <div class="buttons">
+      <input
+        class="form-button"
+        type="submit"
+        value="Registrar"
+        (click)="registrarMunicipio(municipio)"
+      />
+      <button
+        class="form-button cancelar"
+        (click)="cancelar()"
+        href="javascript:void(0)"
+      >
+        Cancelar
+      </button>
+    </div>
+  </form>
 </div>
-
-<!-- <ng-template #estado> </ng-template> -->

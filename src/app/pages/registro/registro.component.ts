@@ -10,6 +10,7 @@ import { DataService } from 'src/app/core/services/data.service';
 })
 export class RegistroComponent implements OnInit {
   estado = { Nombre: '' };
+  municipio = { Nombre: '', idEstado: 0 };
   empleado = {
     Nombre: 'yadira',
     Paterno: 'x',
@@ -28,6 +29,7 @@ export class RegistroComponent implements OnInit {
   listaMunicipios = [
     { NombreMunicipio: 'Seleccione', idEstado: 0, idMunicipio: 0 },
   ];
+  listaEstados = [{ idEstado: 0, Nombre: 'Seleccione' }];
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -38,6 +40,7 @@ export class RegistroComponent implements OnInit {
   ngOnInit(): void {
     this.getParamId();
     this.getMunicipios();
+    this.getEstados();
     console.log(this.paramId);
   }
 
@@ -55,6 +58,9 @@ export class RegistroComponent implements OnInit {
   registrarEstado(value) {
     this.estado.Nombre = value;
     console.log(this.estado);
+    this.dataService.postEstado(this.estado).subscribe((res) => {
+      console.log(res);
+    });
   }
 
   cancelar(): void {
@@ -73,6 +79,26 @@ export class RegistroComponent implements OnInit {
   }
 
   registrarEmpleado(empleado): void {
-    console.log(empleado);
+    this.dataService.postEmpleado(empleado).subscribe((res) => {
+      console.log(res);
+    });
+  }
+
+  registrarMunicipio(municipio): void {
+    this.dataService.postMunicipio(municipio).subscribe((res) => {
+      console.log(res);
+    });
+  }
+
+  getEstados(): void {
+    let estados;
+    this.dataService.getEstados().subscribe((res) => {
+      console.log(res);
+      estados = res;
+      for (let estado of estados) {
+        this.listaEstados.push(estado);
+      }
+      console.log(this.listaEstados);
+    });
   }
 }
