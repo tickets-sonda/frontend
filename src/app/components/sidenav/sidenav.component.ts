@@ -69,19 +69,19 @@ export class SidenavComponent implements OnInit {
           },
           {
             nombre: 'Nuevo Servicio (asignación)',
-            ruta: 'registro/empresa-cliente',
+            ruta: 'nuevo-servicio-asignacion-ver',
             icono: 'business',
             clase: 'material-icons',
           },
           {
             nombre: 'Consulta de servicios',
-            ruta: 'registro/empleado',
+            ruta: '',
             icono: 'badge',
             clase: 'material-icons-outlined',
             children: [
               {
                 nombre: 'En curso',
-                ruta: 'registro/empleado',
+                ruta: 'servicios-en-curso',
                 icono: 'badge',
                 clase: 'material-icons-outlined',
               },
@@ -92,6 +92,18 @@ export class SidenavComponent implements OnInit {
                 clase: 'material-icons-outlined',
               },
             ],
+          },
+          {
+            nombre: 'En curso',
+            ruta: 'servicios-en-curso',
+            icono: 'badge',
+            clase: 'material-icons-outlined',
+          },
+          {
+            nombre: 'Por terminar MDA',
+            ruta: 'servicios-pendientes',
+            icono: 'badge',
+            clase: 'material-icons-outlined',
           },
         ];
         break;
@@ -105,17 +117,34 @@ export class SidenavComponent implements OnInit {
           },
           {
             nombre: 'Servicios terminados',
-            ruta: 'registro/empresa-cliente',
+            ruta: 'servicios-terminados',
             icono: 'business',
             clase: 'material-icons',
           },
           {
             nombre: 'Servicios pendientes',
-            ruta: 'registro/empleado',
+            ruta: 'servicios-pendientes',
             icono: 'badge',
             clase: 'material-icons-outlined',
           },
         ];
+        break;
+        case '4':
+        opcionesMenu = [
+          {
+            nombre: 'Inicio',
+            ruta: 'home',
+            icono: 'home',
+            clase: 'material-icons',
+          },
+          {
+            nombre: 'Crear solicitud',
+            ruta: 'crear-solicitud',
+            icono: 'badge',
+            clase: 'material-icons-outlined',
+          },
+        ];
+        break;
     }
     this.opcionesMenu = opcionesMenu;
   }

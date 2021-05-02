@@ -20,6 +20,7 @@ export class LayoutComponent implements OnInit, DoCheck {
     materno: '',
     empresa: '',
     puesto: '',
+    tipousuario: '',
   };
 
   constructor() {}
@@ -34,6 +35,7 @@ export class LayoutComponent implements OnInit, DoCheck {
     this.currentUser.materno = sessionStorage.getItem('Materno');
     this.currentUser.empresa = sessionStorage.getItem('NombreCliente');
     this.currentUser.puesto = sessionStorage.getItem('NombreTipoUser');
+    this.currentUser.tipousuario = sessionStorage.getItem('idTipoUsuario');
   }
 
   ngDoCheck(): void {

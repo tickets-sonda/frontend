@@ -1,18 +1,19 @@
 <header class="header">
   <div class="header__info">
-    <h1 class="header__info--name">
+    <h1 class="header__info--name" *ngIf="currentUser.tipousuario < 4" >
       <strong>Nombre: </strong> {{ currentUser.nombre | titlecase }}
       {{ currentUser.paterno | titlecase }}
       {{ currentUser.materno | titlecase }}
     </h1>
-    <h1 class="header__info--company" *ngIf="currentUser.empresa !== 'null'">
+    <h1 class="header__info--company" *ngIf="currentUser.tipousuario == 4">
       <strong>Empresa: </strong> {{ currentUser.empresa | titlecase }}
     </h1>
-    <h1 class="header__info--job">
+    <h1 class="header__info--job" *ngIf="currentUser.tipousuario < 4" >
       <strong>Puesto: </strong> {{ currentUser.puesto | titlecase }}
     </h1>
   </div>
   <figure>
     <img src="assets/logo.png" alt="Sonda logo" />
   </figure>
+  
 </header>

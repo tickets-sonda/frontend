@@ -8,3 +8,13 @@
     Ir
   </button>
 </div>
+
+
+<div class="col-md-12" *ngFor="let contador of contadores">
+  <div class="card text-white bg-{{ contador.Color }} m-3">
+    <div class="card-body text-center">
+      <h5 class="card-title">{{ contador.Nombre }}</h5>
+      <h3 class="card-text">{{ contador.Valor }}</h3>
+    </div>
+  </div>
+</div>
