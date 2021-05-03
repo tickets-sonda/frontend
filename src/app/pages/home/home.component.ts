@@ -43,7 +43,7 @@ export class HomeComponent implements OnInit {
             Color: 'info'
           },
           {
-            Nombre: 'Total se Servicios Pendientes',
+            Nombre: 'Total de Servicios Pendientes',
             Valor: '10',
             Color: 'secondary'
           },
