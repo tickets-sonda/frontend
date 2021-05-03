@@ -7,12 +7,13 @@ import { DataService } from '../../core/services/data.service';
   styleUrls: ['./home-cliente.component.scss'],
 })
 export class HomeClienteComponent implements OnInit {
+  idUser = sessionStorage.getItem('idUser');
   text = '';
   open = false;
-  sucursales = [{ idSucursal: 0, NombreCliente: 'Seleccione una opcion' }];
+  sucursales = [{ idSucursal: 0, Sitio: 'Seleccione una opcion' }];
   servicio = {
     idEmpresaCliente: sessionStorage.getItem('idEmpresaCliente'),
-    idUser: sessionStorage.getItem('idUser'),
+    idUser: this.idUser,
     FechaSolicitud: '',
     Asunto: '',
     Sucursal: 0,
@@ -37,8 +38,11 @@ export class HomeClienteComponent implements OnInit {
 
   getSucursales() {
     let sucursales;
-    this.dataService.getSucursales().subscribe((res) => {
+    console.log(this.idUser);
+    this.dataService.getSucursales(this.idUser).subscribe((res) => {
+      console.log('res', res);
       sucursales = res;
+      console.log(sucursales);
       for (let sucursal of sucursales) {
         this.sucursales.push(sucursal);
       }

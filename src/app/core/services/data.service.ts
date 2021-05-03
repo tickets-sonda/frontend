@@ -62,8 +62,13 @@ export class DataService {
     });
   }
 
-  getSucursales() {
-    return this.http.get(`${this.API}/sucursales`);
+  getSucursales(idUser) {
+    let body = {
+      idUser: idUser,
+    };
+    return this.http.post(`${this.API}/sucursales`, body, {
+      headers: new HttpHeaders().set('Content-Type', 'application/json'),
+    });
   }
 
   postSolicitudServicio(solicitud) {
