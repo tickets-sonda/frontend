@@ -10,6 +10,14 @@ import { ServiciosTerminadosComponent } from '../servicios-terminados/servicios-
 import { FormsModule } from '@angular/forms';
 import { RegistroComponent } from '../registro/registro.component';
 import { ServiciosPendientesComponent } from '../servicios-pendientes/servicios-pendientes.component';
+import { HomeClienteComponent } from '../home-cliente/home-cliente.component';
+import { MdaServicioAsignacionComponent } from '../mda-servicio-asignacion/mda-servicio-asignacion.component';
+import { ServiciosEnCursoComponent } from '../servicios-en-curso/servicios-en-curso.component';
+import { NuevoServicioAsignacionVerComponent } from '../nuevo-servicio-asignacion-ver/nuevo-servicio-asignacion-ver.component';
+import { ServiciosTerminadosDetalleComponent } from '../servicios-terminados-detalle/servicios-terminados-detalle.component';
+import { ServiciosPendienteDetalleComponent } from '../servicios-pendiente-detalle/servicios-pendiente-detalle.component';
+import { MdaPorTerminarComponent } from '../mda-por-terminar/mda-por-terminar.component';
+import { ServiciosEnCursoDetalleComponent } from '../servicios-en-curso-detalle/servicios-en-curso-detalle.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +26,15 @@ import { ServiciosPendientesComponent } from '../servicios-pendientes/servicios-
     ServiciosTerminadosComponent,
     ServiciosPendientesComponent,
     RegistroComponent,
+    HomeClienteComponent,
+    HomeClienteComponent,
+    MdaServicioAsignacionComponent,
+    ServiciosEnCursoComponent,
+    NuevoServicioAsignacionVerComponent,
+    ServiciosTerminadosDetalleComponent,
+    ServiciosPendienteDetalleComponent,
+    MdaPorTerminarComponent,
+    ServiciosEnCursoDetalleComponent,
   ],
   imports: [
     CommonModule,

@@ -61,4 +61,18 @@ export class DataService {
       headers: new HttpHeaders().set('Content-Type', 'application/json'),
     });
   }
+
+  getSucursales() {
+    return this.http.get(`${this.API}/sucursales`);
+  }
+
+  postSolicitudServicio(solicitud) {
+    let body = {
+      ...solicitud,
+    };
+    console.log('body', body);
+    return this.http.post(`${this.API}registro/servicio`, body, {
+      headers: new HttpHeaders().set('Content-Type', 'application/json'),
+    });
+  }
 }

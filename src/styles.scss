@@ -45,3 +45,6 @@ body {
 @mixin content-width {
   width: calc(100% - $width-sidenav);
 }
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
