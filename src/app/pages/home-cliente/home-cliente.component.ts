@@ -11,6 +11,8 @@ export class HomeClienteComponent implements OnInit {
   open = false;
   sucursales = [{ idSucursal: 0, NombreCliente: 'Seleccione una opcion' }];
   servicio = {
+    idEmpresaCliente: sessionStorage.getItem('idEmpresaCliente'),
+    idUser: sessionStorage.getItem('idUser'),
     FechaSolicitud: '',
     Asunto: '',
     Sucursal: 0,
@@ -29,11 +31,7 @@ export class HomeClienteComponent implements OnInit {
     console.log(this.servicio);
 
     this.dataService.postSolicitudServicio(this.servicio).subscribe((res) => {
-      if (res.Message) {
-        this.text = res.Message;
-      } else {
-        this.text = res;
-      }
+      this.text = res.Message;
     });
   }
 
