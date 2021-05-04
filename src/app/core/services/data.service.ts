@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { couldStartTrivia } from 'typescript';
 
 @Injectable({
   providedIn: 'root',
@@ -19,6 +20,10 @@ export class DataService {
 
   getTiposUsuarios() {
     return this.http.get(`${this.API}tipos-usuario`);
+  }
+
+  getTiposServicios() {
+    return this.http.get(`${this.API}tipos-servicio`);
   }
 
   login(idtype, username, password) {
@@ -80,4 +85,23 @@ export class DataService {
       headers: new HttpHeaders().set('Content-Type', 'application/json'),
     });
   }
+
+  postTablas(parametros){
+    let body = {
+      ...parametros,
+    };
+    console.log('body', body);
+    return this.http.post(`${this.API}tablas`, body, {
+      headers: new HttpHeaders().set('Content-Type', 'application/json'),
+    }); 
+
+  }
+
+  getDetalle(id){
+
+    console.log(id)
+    console.log(`${this.API}detalle/${id}`)
+    return this.http.get(`${this.API}detalle/${id}`);
+  }
+
 }

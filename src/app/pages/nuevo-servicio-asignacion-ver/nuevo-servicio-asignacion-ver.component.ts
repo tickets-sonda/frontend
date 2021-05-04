@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/core/services/data.service';
 
 @Component({
   selector: 'app-nuevo-servicio-asignacion-ver',
@@ -7,7 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NuevoServicioAsignacionVerComponent implements OnInit {
   // servicios = [{NoServicio: }]
-  constructor() {}
+  parametros={estatus:'Nuevo',idUser:'JUAGA22'}
+  registros:any;
+  constructor(private dataService:DataService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {this.getTablas()}
+  getTablas(){this.dataService.postTablas(this.parametros).subscribe(res=>{
+    console.log(res)
+    this.registros=res;
+    console.log(this.registros)
+  })}
 }
+

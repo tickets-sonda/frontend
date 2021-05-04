@@ -26,7 +26,7 @@ const routes: Routes = [
       { path: 'reporte/:id', component: ReporteComponent },
       { path: 'registro/:id', component: RegistroComponent },
       { path: 'crear-solicitud', component: HomeClienteComponent},
-      { path: 'servicio-asignacion', component: MdaServicioAsignacionComponent},
+      { path: 'servicio-asignacion/:id', component: MdaServicioAsignacionComponent},
       { path: 'servicios-en-curso', component: ServiciosEnCursoComponent},
       { path: 'nuevo-servicio-asignacion-ver', component: NuevoServicioAsignacionVerComponent},
       { path: 'servicios-terminados-detalle', component: ServiciosTerminadosDetalleComponent},

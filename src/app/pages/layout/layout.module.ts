@@ -41,7 +41,7 @@ import { ServiciosEnCursoDetalleComponent } from '../servicios-en-curso-detalle/
     LayoutRoutingModule,
     ComponentsModule,
     RouterModule,
-    FormsModule,
+    FormsModule
   ],
 })
 export class LayoutModule {}

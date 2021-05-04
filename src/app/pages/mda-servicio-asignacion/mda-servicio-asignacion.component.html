@@ -1,5 +1,5 @@
 
-	<div class="container">
+	<div class="container" *ngIf="detalle">
 		<div class="row mt-5">
 		    <div class="col-md-4">
 		    	<div class="row mb-2">
@@ -7,7 +7,11 @@
 						<label class="col-form-label">Estatus:</label>
 					</div>
 					<div class="col-md-8">
-				    	<h5><span class="badge bg-danger">Nuevo</span></h5>
+				    	<h5 *ngIf="detalle.Estatus === 'Nuevo'"><span class="badge bg-danger">{{detalle.Estatus}}</span></h5>
+				    	<h5 *ngIf="detalle.Estatus === 'Asignado'"><span class="badge bg-primary">{{detalle.Estatus}}</span></h5>
+				    	<h5 *ngIf="detalle.Estatus === 'En curso'"><span class="badge bg-success">{{detalle.Estatus}}</span></h5>
+				    	<h5 *ngIf="detalle.Estatus === 'En revision'"><span class="badge bg-warning">{{detalle.Estatus}}</span></h5>
+				    	<h5 *ngIf="detalle.Estatus === 'Aprobado'"><span class="badge bg-info">{{detalle.Estatus}}</span></h5>
 				    	<!--<h5><span class="badge bg-primary">Asignado</span></h5>
 				    	<h5><span class="badge bg-success">En curso</span></h5>
 				    	<h5><span class="badge bg-warning">En revision</span></h5>
@@ -19,7 +23,7 @@
 						<label class="col-form-label">No. Servicio:</label>
 					</div>
 					<div class="col-md-8">
-				    	<input type="text" class="form-control" id="inputNoServicio" value="34567" readonly>
+				    	<input [(ngModel)]="detalle.NoServicio" name="noservicio" type="text" class="form-control" id="inputNoServicio" value="34567" readonly>
 					</div>
 				</div>
 				
@@ -28,7 +32,7 @@
 						<label class="col-form-label">Fecha Solicitud:</label>
 					</div>
 					<div class="col-md-8">
-				    	<input type="date" class="form-control" id="inputFechaSolicitud" value="2021-01-08" readonly>
+				    	<input [(ngModel)]="detalle.NoServicio" name="noservicio" type="date" class="form-control" id="inputFechaSolicitud" value="2021-01-08" readonly>
 					</div>
 				</div>
 				<div class="row mb-2">
@@ -36,12 +40,14 @@
 						<label class="col-form-label">Prioridad:</label>
 					</div>
 					<div class="col-md-8">
-				    	<select class="form-select" id="selectPrioridad">
-					      <option selected>Seleccione...</option>
-					      <option value="1">Alta</option>
-					      <option value="2">Media</option>
-					      <option value="3">Baja</option>
-					    </select>
+				    	<select name="miselect" class="form-select" [(ngModel)]="detalle.Prioridad">
+							<option
+							  [value]="detalle.Prioridad"
+							  *ngFor="let prioridad of prioridades"
+							>
+							  {{ prioridad.name }}
+							</option>
+						  </select>
 					</div>
 				</div>
 				<div class="row mb-2">
@@ -49,7 +55,7 @@
 						<label class="col-form-label">Responsable en sitio:</label>
 					</div>
 					<div class="col-md-8">
-				    	<input type="text" class="form-control" id="inputResponsable" value="Oscar Cazares" readonly>
+				    	<input [(ngModel)]="detalle.ResponsableDelSitio" type="text" class="form-control" id="inputResponsable" value="Oscar Cazares" readonly>
 					</div>
 				</div>
 			</div>
@@ -62,12 +68,14 @@
 						<label class="col-form-label">Tipo de servicio:</label>
 					</div>
 					<div class="col-md-8">
-				    	<select class="form-select" id="selectTipoServicio">
-					      <option selected>Seleccione...</option>
-					      <option value="1">Mantenimiento Correctiva</option>
-					      <option value="2">Mantenimiento Preventivo</option>
-					      <option value="3">Intalacion</option>
-					    </select>
+				    	<select name="miselect" class="form-select" [(ngModel)]="detalle.NombreTipoServicio">
+							<option
+							  [value]="detalle.NombreTipoServicio"
+							  *ngFor="let tipoServicio of tipoServicios"
+							>
+							  {{ tipoServicio.NombreTipoServicio }}
+							</option>
+						  </select>
 					</div>
 				</div>
 				<div class="row mb-2">
@@ -75,7 +83,7 @@
 						<label class="col-form-label">Fecha Asignacion:</label>
 					</div>
 					<div class="col-md-8">
-				    	<input type="date" class="form-control" id="inputFechaAsignacion" value="2021-01-08">
+				    	<input type="date" [(ngModel)]="detalle.FechaAsignacion" name="fechaAsignacion" class="form-control" id="inputFechaAsignacion" value="2021-01-08">
 					</div>
 				</div>
 				<div class="row mb-2">
@@ -83,7 +91,7 @@
 						<label class="col-form-label">Cliente:</label>
 					</div>
 					<div class="col-md-8">
-				    	<input type="text" class="form-control" id="inputFechaAsignacion" value="SAT" readonly>
+				    	<input type="text" [(ngModel)]="detalle.NombreCliente" name="nombrecliente" class="form-control" id="inputFechaAsignacion" value="SAT" readonly>
 					</div>
 				</div>
 				<div class="row mb-2">
@@ -91,7 +99,7 @@
 						<label class="col-form-label">Sitio:</label>
 					</div>
 					<div class="col-md-8">
-				    	<textarea class="form-control" id="inputSitio" rows="3" readonly>Lirio 244, Obispado Monterrey, Nuevo Leon Mexico CP 33445</textarea>
+				    	<textarea [(ngModel)]="detalle.Sitio" name="sitio" class="form-control" id="inputSitio" rows="3" readonly></textarea>
 					</div>
 				</div>
 				<div class="row mb-2">
@@ -99,8 +107,9 @@
 						<label class="col-form-label">Ubicacion:</label>
 					</div>
 					<div class="col-md-8">
-				    	<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6542.210951182794!2d-100.19903956601004!3d25.77007482098522!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x7ae43887306fe7a8!2sBanorte!5e0!3m2!1ses-419!2sus!4v1619577820750!5m2!1ses-419!2sus" width="200" height="350" style="border:0;" allowfullscreen="true" loading="lazy"></iframe>
+				    	<iframe [src]="safeUrl" width="200" height="350" style="border:0;" allowfullscreen="true" loading="lazy"></iframe>
 					</div>
+
 				</div>
 			</div>
 
@@ -111,7 +120,7 @@
 					<label class="col-form-label">Asunto:</label>
 				</div>
 				<div class="col-md-12">
-			    	<textarea class="form-control" id="inputAsunto" rows="3" readonly>Problematica actual con la descripcion del cliente</textarea>
+			    	<textarea [(ngModel)]="detalle.Asunto" name="Asunto" class="form-control" id="inputAsunto" rows="3" readonly></textarea>
 				</div>
 
 		    	<div class="col-md-12">
@@ -200,4 +209,8 @@
 				</div>
 			</div>
 		</div>
+	</div>
+
+	<div class="container" *ngIf="detalle === null">
+		<h1>Hey no hay nada para este id</h1>
 	</div>

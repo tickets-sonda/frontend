@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../core/services/data.service';
+import { Response } from '../../core/model/response.interface';
 
 @Component({
   selector: 'app-home-cliente',
@@ -31,7 +32,7 @@ export class HomeClienteComponent implements OnInit {
     this.open = true;
     console.log(this.servicio);
 
-    this.dataService.postSolicitudServicio(this.servicio).subscribe((res) => {
+    this.dataService.postSolicitudServicio(this.servicio).subscribe((res: Response) => {
       this.text = res.Message;
     });
   }

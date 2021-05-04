@@ -6,6 +6,15 @@
   place-content: center;
 }
 
+.logo-sonda{
+    width: 250px;
+    display: inherit;
+    place-self: center;
+    img {
+      max-width: 100%;
+    }
+}
+
 .login-form {
   width: 300px;
   margin: 0 auto;
