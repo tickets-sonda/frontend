@@ -84,7 +84,7 @@
       [(ngModel)]="empleado.idMunicipio"
     >
       <option
-        [value]="municipio.idMunicipio"
+        [value]="municipio.Municipio"
         *ngFor="let municipio of listaMunicipios"
       >
         {{ municipio.NombreMunicipio }}
@@ -138,6 +138,25 @@
       name="sexo"
       id="sexo"
     />
+    <label class="form-label" for="tipousuario">Tipo Usuario</label>
+    <select
+      class="form-input"
+      id="municipio"
+      name="miselect"
+      [(ngModel)]="empleado.TipoUsuario"
+    >
+      <option [value]="tipoUsuario.id" *ngFor="let tipoUsuario of tipoUsuarios">
+        {{ tipoUsuario.nombre }}
+      </option>
+    </select>
+    <label class="form-label" for="claveuser">Clave User</label>
+    <input
+      class="form-input"
+      type="text"
+      [(ngModel)]="empleado.ClaveUser"
+      name="claveuser"
+      id="claveuser"
+    />
     <div class="buttons">
       <input
         class="form-button"
@@ -154,6 +173,7 @@
       </button>
     </div>
   </form>
+  <app-modal [text]="text" [(open)]="open"></app-modal>
   <!-- form municipio -->
   <form class="form" *ngIf="paramId == 'municipio'" method="POST">
     <label class="form-label" for="name">Nombre</label>

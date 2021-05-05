@@ -27,7 +27,12 @@ export class ModalComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     console.log(changes);
-    changes.open.currentValue ? this.openModal(this.modal) : '';
+    if (changes.open) {
+      changes.open.currentValue ? this.openModal(this.modal) : '';
+    }
+    if (changes.text) {
+      changes.text.currentValue ? this.openModal(this.modal) : '';
+    }
   }
 
   openModal(modal) {
