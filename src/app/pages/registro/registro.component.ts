@@ -29,6 +29,13 @@ export class RegistroComponent implements OnInit {
     TipoUsuario: 0,
     ClaveUser: 0,
   };
+  empresaCliente = {
+    NombreCliente: '',
+    Telefono: '',
+    Email: '',
+    DescripcionRama: '',
+    ClaveEmpresa: '',
+  };
   paramId;
   listaMunicipios = [
     { NombreMunicipio: 'Seleccione', idEstado: 0, Municipio: 0 },
@@ -39,6 +46,8 @@ export class RegistroComponent implements OnInit {
     { id: 2, nombre: 'Mesa de ayuda' },
     { id: 3, nombre: 'Ingeniero de Campo' },
   ];
+  listaTiposUsuarios: any;
+  empresaClienteUsers: any;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -50,7 +59,8 @@ export class RegistroComponent implements OnInit {
     this.getParamId();
     this.getMunicipios();
     this.getEstados();
-    console.log(this.paramId);
+    this.getEmpresaClienteUsers();
+    this.getTiposUsuarios();
   }
 
   getParamId(): void {
@@ -66,7 +76,6 @@ export class RegistroComponent implements OnInit {
 
   registrarEstado(value) {
     this.estado.Nombre = value;
-    console.log(this.estado);
     this.dataService.postEstado(this.estado).subscribe((res: any) => {
       this.text = res.Message;
     });
@@ -79,20 +88,16 @@ export class RegistroComponent implements OnInit {
   getMunicipios(): void {
     let municipios;
     this.dataService.getMunicipios().subscribe((res) => {
-      console.log('res', res);
       municipios = res;
       for (let municipio of municipios) {
         this.listaMunicipios.push(municipio);
-        console.log('lista municipios', this.listaMunicipios);
       }
     });
   }
 
   registrarEmpleado(empleado): void {
     this.dataService.postEmpleado(empleado).subscribe((res: any) => {
-      console.log(res.idUser);
       this.text = `Su nombre de usuario es: ${res.idUser}`;
-      console.log(this.text);
     });
   }
 
@@ -105,12 +110,28 @@ export class RegistroComponent implements OnInit {
   getEstados(): void {
     let estados;
     this.dataService.getEstados().subscribe((res) => {
-      console.log(res);
       estados = res;
       for (let estado of estados) {
         this.listaEstados.push(estado);
       }
-      console.log(this.listaEstados);
+    });
+  }
+
+  registrarEmpresaCliente(empresa) {
+    this.dataService.postEmpresaCliente(empresa).subscribe((res: any) => {
+      this.text = `Su ID de usuario es: ${res.Usuario} y su ID de empresa es: ${res.idEmpresaCLiente}`;
+    });
+  }
+
+  getEmpresaClienteUsers() {
+    this.dataService.getEmpresaClienteUsers().subscribe((res: any) => {
+      this.empresaClienteUsers = res;
+    });
+  }
+
+  getTiposUsuarios() {
+    this.dataService.getTiposUsuarios().subscribe((res: any) => {
+      this.listaTiposUsuarios = res;
     });
   }
 }

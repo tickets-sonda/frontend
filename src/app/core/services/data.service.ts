@@ -86,22 +86,34 @@ export class DataService {
     });
   }
 
-  postTablas(parametros){
+  postTablas(parametros) {
     let body = {
       ...parametros,
     };
     console.log('body', body);
     return this.http.post(`${this.API}tablas`, body, {
       headers: new HttpHeaders().set('Content-Type', 'application/json'),
-    }); 
-
+    });
   }
 
-  getDetalle(id){
+  postEmpresaCliente(empresa) {
+    let body = {
+      ...empresa,
+    };
+    console.log('body', body);
+    return this.http.post(`${this.API}registro/empresa-cliente`, body, {
+      headers: new HttpHeaders().set('Content-Type', 'application/json'),
+    });
+  }
 
-    console.log(id)
-    console.log(`${this.API}detalle/${id}`)
+  getDetalle(id) {
+    console.log(id);
+    console.log(`${this.API}detalle/${id}`);
     return this.http.get(`${this.API}detalle/${id}`);
   }
 
+  getEmpresaClienteUsers() {
+    console.log(`${this.API}empresa-cliente/users`);
+    return this.http.get(`${this.API}empresa-cliente/users`);
+  }
 }

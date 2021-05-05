@@ -210,4 +210,117 @@
       </button>
     </div>
   </form>
+  <!-- form empresa cliente -->
+  <form class="form" *ngIf="paramId == 'empresa cliente'" method="POST">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="row">
+          <label class="col-form-label" for="name">Nombre Cliente</label>
+          <input
+            class="form-control"
+            type="text"
+            [(ngModel)]="empresaCliente.NombreCliente"
+            name="nombre"
+          />
+        </div>
+        <div class="row">
+          <label class="col-form-label" for="telefono">Telefono</label>
+          <input
+            class="form-control"
+            type="text"
+            [(ngModel)]="empresaCliente.Telefono"
+            name="telefono"
+          />
+        </div>
+        <div class="row">
+          <label class="col-form-label" for="email">Email</label>
+          <input
+            class="form-control"
+            type="text"
+            [(ngModel)]="empresaCliente.Email"
+            name="email"
+          />
+        </div>
+        <div class="row">
+          <label class="col-form-label" for="description"
+            >Descripcion Rama</label
+          >
+          <input
+            class="form-control"
+            type="text"
+            [(ngModel)]="empresaCliente.DescripcionRama"
+            name="description"
+          />
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-sm">
+            <label class="col-form-label" for="password">Contraseña</label>
+            <input
+              class="form-control"
+              type="password"
+              [(ngModel)]="empresaCliente.ClaveEmpresa"
+              name="password"
+            />
+          </div>
+          <div class="col-sm" style="display: grid">
+            <input
+              class="btn btn-primary"
+              type="submit"
+              value="Enviar"
+              (click)="registrarEmpresaCliente(empresaCliente)"
+            />
+            <button class="btn btn-secondary" href="javascript:void(0)">
+              Cancelar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <br />
+  <div class="container" *ngIf="paramId == 'empresa cliente'">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">ID Empresa Cliente</th>
+          <th scope="col">ID Usuario</th>
+          <th scope="col">Nombre Cliente</th>
+          <th scope="col">Descripcion Rama</th>
+          <th scope="col">Telefono</th>
+          <th scope="col">Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let empresaClienteUser of empresaClienteUsers">
+          <td>{{ empresaClienteUser.idEmpresaCliente }}</td>
+          <th>{{ empresaClienteUser.idUser }}</th>
+          <td>{{ empresaClienteUser.NombreCliente }}</td>
+          <td>{{ empresaClienteUser.DescripcionRama }}</td>
+          <td>{{ empresaClienteUser.Telefono }}</td>
+          <td>{{ empresaClienteUser.Email }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- tablas tipo de usuario -->
+  <div class="container" *ngIf="paramId == 'tipo usuario'">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">ID Tipo Usuario</th>
+          <th scope="col">Nombre Tipo Usuario</th>
+          <th scope="col">Abreviatura</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tipoUsuario of listaTiposUsuarios">
+          <td>{{ tipoUsuario.idTipoUsuario }}</td>
+          <th>{{ tipoUsuario.NombreTipoUser }}</th>
+          <td>{{ tipoUsuario.Abreviatura }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
