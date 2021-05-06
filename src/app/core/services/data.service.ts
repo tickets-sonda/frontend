@@ -67,6 +67,16 @@ export class DataService {
     });
   }
 
+  postSucursal(sucursal) {
+    let body = {
+      ...sucursal,
+    };
+    console.log('body', body);
+    return this.http.post(`${this.API}registro/sucursal`, body, {
+      headers: new HttpHeaders().set('Content-Type', 'application/json'),
+    });
+  }
+
   getSucursales(idUser) {
     let body = {
       idUser: idUser,

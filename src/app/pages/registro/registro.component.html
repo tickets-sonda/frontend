@@ -279,6 +279,68 @@
       </div>
     </div>
   </form>
+  <br>
+  <form class="form" *ngIf="paramId == 'empresa cliente'" method="POST">
+    <h1>Sucursal</h1>
+    <hr>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="row">
+          <label class="col-form-label" for="empresaCliente">Empresa Cliente</label>
+          <input
+            class="form-control"
+            type="text"
+            [(ngModel)]="Sucursal.EmpresaCliente"
+            name="empresaCliente"
+          />
+        </div>
+        <div class="row">
+          <label class="col-form-label" for="Ubicacion">Ubicacion</label>
+          <input
+            class="form-control"
+            type="text"
+            [(ngModel)]="Sucursal.Ubicacion"
+            name="Ubicacion"
+          />
+        </div>
+        <div class="row">
+          <label class="col-form-label" for="Sitio">Sitio</label>
+          <input
+            class="form-control"
+            type="text"
+            [(ngModel)]="Sucursal.Sitio"
+            name="Sitio"
+          />
+        </div>
+        <div class="row">
+          <label class="col-form-label" for="Municipio"
+            >Municipio</label
+          >
+          <input
+            class="form-control"
+            type="text"
+            [(ngModel)]="Sucursal.NombreMunicipio"
+            name="Municipio"
+          />
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-sm" style="display: grid">
+            <input
+              class="btn btn-primary"
+              type="submit"
+              value="Enviar"
+              (click)="registrarSucursal(Sucursal)"
+            />
+            <button class="btn btn-secondary" href="javascript:void(0)">
+              Cancelar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
   <br />
   <div class="container" *ngIf="paramId == 'empresa cliente'">
     <table class="table table-bordered">

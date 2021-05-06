@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
     password: '',
     tipo: 0,
   };
-  tiposUsuarios = [{ idTipoUsuario: 0, NombreTipoUser: 'Tipo de empleado' }];
+  tiposUsuarios = [{ idTipoUsuario: 0, NombreTipoUser: 'Tipo de usuario' }];
 
   constructor(private dataService: DataService, private router: Router) {}
 

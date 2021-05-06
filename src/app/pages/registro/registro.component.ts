@@ -29,6 +29,7 @@ export class RegistroComponent implements OnInit {
     TipoUsuario: 0,
     ClaveUser: 0,
   };
+  Sucursal = { EmpresaCliente: 0, Ubicacion: '', Sitio: '', NombreMunicipio: '' };
   empresaCliente = {
     NombreCliente: '',
     Telefono: '',
@@ -133,5 +134,12 @@ export class RegistroComponent implements OnInit {
     this.dataService.getTiposUsuarios().subscribe((res: any) => {
       this.listaTiposUsuarios = res;
     });
+  }
+
+  registrarSucursal(sucursal) {
+    this.dataService.postSucursal(sucursal).subscribe((res: any) => {
+      this.text = res.Message;
+      console.log(res);
+    })
   }
 }

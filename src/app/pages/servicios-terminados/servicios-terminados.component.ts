@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./servicios-terminados.component.scss'],
 })
 export class ServiciosTerminadosComponent implements OnInit {
+  parametros={estatus:'Aprobado/Terminado',idUser: sessionStorage.getItem('idUser')}
   constructor() {}
 
   ngOnInit(): void {}
