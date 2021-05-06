@@ -19,7 +19,7 @@ export class HomeClienteComponent implements OnInit {
     Asunto: '',
     Sucursal: 0,
     ResponsableSitio: '',
-    Email: 'miguelon@elbarbaro.com',
+    Email: '',
   };
   constructor(private dataService: DataService) {}
 
@@ -32,9 +32,11 @@ export class HomeClienteComponent implements OnInit {
     this.open = true;
     console.log(this.servicio);
 
-    this.dataService.postSolicitudServicio(this.servicio).subscribe((res: Response) => {
-      this.text = res.Message;
-    });
+    this.dataService
+      .postSolicitudServicio(this.servicio)
+      .subscribe((res: Response) => {
+        this.text = res.Message;
+      });
   }
 
   getSucursales() {
