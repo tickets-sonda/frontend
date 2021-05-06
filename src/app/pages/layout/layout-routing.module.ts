@@ -29,10 +29,10 @@ const routes: Routes = [
       { path: 'servicio-asignacion/:id', component: MdaServicioAsignacionComponent},
       { path: 'servicios-en-curso', component: ServiciosEnCursoComponent},
       { path: 'nuevo-servicio-asignacion-ver', component: NuevoServicioAsignacionVerComponent},
-      { path: 'servicios-terminados-detalle', component: ServiciosTerminadosDetalleComponent},
+      { path: 'servicios-pendientes/:id', component: ServiciosTerminadosDetalleComponent},
       { path: 'servicios-pediente-detalle', component: ServiciosPendienteDetalleComponent},
       { path: 'servicio-pendiente-por-terminar-mda', component: MdaPorTerminarComponent},
-      { path: 'servicios-en-curso-detalle', component: ServiciosEnCursoDetalleComponent},
+      { path: 'servicios-en-curso/:id', component: ServiciosEnCursoDetalleComponent},
     ],
   },
 ];

@@ -75,7 +75,7 @@ export class SidenavComponent implements OnInit {
           },
           {
             nombre: 'Consulta de servicios',
-            ruta: '',
+            ruta: '/home',
             icono: 'badge',
             clase: 'material-icons-outlined',
             children: [

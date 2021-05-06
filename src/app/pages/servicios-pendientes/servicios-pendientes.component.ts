@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/core/services/data.service';
 
 @Component({
   selector: 'app-servicios-pendientes',
@@ -15,7 +16,12 @@ export class ServiciosPendientesComponent implements OnInit {
     tipousuario: '',
   };
 
-  constructor() { }
+  parametros={estatus:'En revision',idUser: sessionStorage.getItem('idUser')}
+  registros: any;
+
+  constructor(private dataService: DataService) {
+    this.getTablas();
+   }
 
   ngOnInit(): void {
     this.currentUser.nombre = sessionStorage.getItem('Nombre');
@@ -24,6 +30,14 @@ export class ServiciosPendientesComponent implements OnInit {
     this.currentUser.empresa = sessionStorage.getItem('NombreCliente');
     this.currentUser.puesto = sessionStorage.getItem('NombreTipoUser');
     this.currentUser.tipousuario = sessionStorage.getItem('idTipoUsuario');
+  }
+
+  getTablas(){
+    this.dataService.postTablas(this.parametros).subscribe((res: any) => {
+      console.log(res);
+      this.registros = res;
+      console.log('registros pendientes',this.registros);
+    })
   }
 
 }

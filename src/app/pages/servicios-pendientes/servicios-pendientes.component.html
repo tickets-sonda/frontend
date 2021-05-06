@@ -9,42 +9,32 @@
         <button type="submit" class="btn btn-primary mb-3">Buscar</button>
       </div>
     </div>
-      <table class="table table-bordered mt-3">
-          <thead>
-            <tr>
-              <th scope="col">No Servicio</th>
-              <th scope="col">No Empleado</th>
-              <th scope="col">Tipo Servicio</th>
-              <th scope="col">Prioridad</th>
-              <th scope="col">Sucursal</th>
-              <th scope="col">Cliente</th>
-              <th scope="col">Fecha asignacion</th>
-              <th scope="col"></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th>1 </th> 
-              <td>1</td>
-              <td>Instalacion</td>
-              <td>Baja</td>
-              <td>Banorte apodaca</td>
-              <td>Banorte</td>
-              <td>04/20/2021</td>
-              <td><a target="_blank" href="servicio-pendiente-por-terminar-mda" class="btn btn-outline-primary">Ver</a></td> 
-            </tr>
-            <tr>
-              <th>1 </th> 
-              <td>1</td>
-              <td>Instalacion</td>
-              <td>Baja</td>
-              <td>Banorte apodaca</td>
-              <td>Banorte</td>
-              <td>04/20/2021</td>
-              <td><a target="_blank" href="servicio-pendiente-por-terminar-mda" class="btn btn-outline-primary">Ver</a></td> 
-             </tr>
-          </tbody>
-        </table>
+    <table class="table table-bordered mt-3">
+      <thead>
+        <tr>
+          <th scope="col">No Servicio</th>
+          <th scope="col">No Empleado</th>
+          <th scope="col">Tipo Servicio</th>
+          <th scope="col">Prioridad</th>
+          <th scope="col">Sucursal</th>
+          <th scope="col">Cliente</th>
+          <th scope="col">Fecha asignacion</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let registro of registros">
+          <th>{{registro.NoServicio}} </th> 
+          <td>{{registro.NoEmpleado}} </td> 
+          <td>{{registro.TipoServicio}} </td> 
+          <td>{{registro.Prioridad}} </td> 
+          <td>{{registro.Sucursal}} </td> 
+          <td>{{registro.Cliente}} </td> 
+          <td>{{registro.FechaAsignacion}} </td> 
+          <td><a [routerLink]="['/servicios-pendientes', registro.NoServicio]" routerLinkActive="router-link-active"  class="btn btn-outline-primary">Ver</a></td> 
+        </tr>
+      </tbody>
+    </table>
     </div>
 </div>
 
@@ -58,42 +48,32 @@
       <button type="submit" class="btn btn-primary mb-3">Buscar</button>
     </div>
   </div>
-    <table class="table table-bordered mt-3">
-        <thead>
-          <tr>
-            <th scope="col">No Servicio</th>
-            <th scope="col">Tipo Servicio</th>
-            <th scope="col">Prioridad</th>
-            <th scope="col">Sucursal</th>
-            <th scope="col">Cliente</th>
-            <th scope="col">Fecha asignacion</th>
-            <th scope="col">Estatus</th>
-            <th scope="col"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th>1</th> 
-            <td>Instalacion</td>
-            <td>Baja</td>
-            <td>Banorte apodaca</td>
-            <td>Banorte</td>
-            <td>04/20/2021</td>
-            <td>En curso</td>
-            <td><a target="_blank" href="servicios-pediente-detalle" class="btn btn-outline-primary">Ver</a></td> 
-          </tr>
-          <tr>
-            <th>2</th> 
-            <td>Instalacion</td>
-            <td>Baja</td>
-            <td>Banorte apodaca</td>
-            <td>Banorte</td>
-            <td>04/20/2021</td>
-            <td>en revision</td>
-            <td><a target="_blank" href="servicios-pediente-detalle" class="btn btn-outline-primary">Ver</a></td> 
-          </tr>
-        </tbody>
-      </table>
+  <table class="table table-bordered mt-3">
+    <thead>
+      <tr>
+        <th scope="col">No Servicio</th>
+        <th scope="col">No Empleado</th>
+        <th scope="col">Tipo Servicio</th>
+        <th scope="col">Prioridad</th>
+        <th scope="col">Sucursal</th>
+        <th scope="col">Cliente</th>
+        <th scope="col">Fecha asignacion</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let registro of registros">
+        <th>{{registro.NoServicio}} </th> 
+        <td>{{registro.NoEmpleado}} </td> 
+        <td>{{registro.TipoServicio}} </td> 
+        <td>{{registro.Prioridad}} </td> 
+        <td>{{registro.Sucursal}} </td> 
+        <td>{{registro.Cliente}} </td> 
+        <td>{{registro.FechaAsignacion}} </td> 
+        <td><a target="_blank" href="servicios-en-curso-detalle" class="btn btn-outline-primary">Ver</a></td> 
+      </tr>
+    </tbody>
+  </table>
 </div>
 
 
