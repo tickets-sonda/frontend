@@ -1,3 +1,4 @@
+import { DataService } from 'src/app/core/services/data.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ServiciosTerminadosComponent implements OnInit {
   parametros={estatus:'Aprobado/Terminado',idUser: sessionStorage.getItem('idUser')}
-  constructor() {}
-
-  ngOnInit(): void {}
+  constructor(private dataService: DataService) {}
+  ngOnInit(): void { }
+  
+  getTablas() {
+    this.dataService.postTablas(this.parametros).subscribe((res: any) => {
+      console.log(res)
+    })
+  }
 }
