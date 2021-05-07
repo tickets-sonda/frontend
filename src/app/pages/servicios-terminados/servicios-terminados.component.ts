@@ -7,13 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./servicios-terminados.component.scss'],
 })
 export class ServiciosTerminadosComponent implements OnInit {
-  parametros={estatus:'Aprobado/Terminado',idUser: sessionStorage.getItem('idUser')}
+  parametros = { estatus: 'Aprobado/Terminado', idUser: sessionStorage.getItem('idUser') }
+  registros: any;
   constructor(private dataService: DataService) {}
   ngOnInit(): void {this.getTablas() }
   
   getTablas() {
     this.dataService.postTablas(this.parametros).subscribe((res: any) => {
       console.log(res)
+      this.registros = res;
     })
   }
 }
