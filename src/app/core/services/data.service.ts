@@ -117,7 +117,7 @@ export class DataService {
   }
 
   getDetalle(id) {
-    console.log(id);
+    console.log('ID Dataservice detalle: ', id);
     console.log(`${this.API}detalle/${id}`);
     return this.http.get(`${this.API}detalle/${id}`);
   }
@@ -126,4 +126,26 @@ export class DataService {
     console.log(`${this.API}empresa-cliente/users`);
     return this.http.get(`${this.API}empresa-cliente/users`);
   }
+
+  updateServicioEstatus(servicio) {
+    let body = {
+      ...servicio,
+    };
+    console.log('body', body);
+    return this.http.post(`${this.API}update/servicio-estatus`, body, {
+      headers: new HttpHeaders().set('Content-Type', 'application/json'),
+    });
+  }
+
+  getContador(empleado) {
+    let body = {
+      NoEmpleado:empleado,
+    };
+    console.log('body', body);
+    return this.http.post(`${this.API}contador`, body, {
+      headers: new HttpHeaders().set('Content-Type', 'application/json'),
+    });
+  }
+  
+
 }

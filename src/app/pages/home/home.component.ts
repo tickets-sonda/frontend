@@ -9,6 +9,8 @@ import { DataService } from 'src/app/core/services/data.service';
 export class HomeComponent implements OnInit {
   opciones: any;
   contadores: any;
+  terminados: any;
+  pendientes: any;
 
   constructor(private DataService: DataService) {}
 
@@ -19,51 +21,57 @@ export class HomeComponent implements OnInit {
 
 
   getContadores(): void {
-    let opcionesContador;
-    switch (sessionStorage.getItem('idTipoUsuario')) {
-      case '2':
-        this.contadores = [
-          {
-            Nombre: 'Total de Servicios Terminados',
-            Valor: '15', //Este valor debe ser llenado desde la BD
-            Color: 'info'
-          },
-          {
-            Nombre: 'Total de Servicios Pendientes',
-            Valor: '55',
-            Color: 'secondary'
-          },
-        ];
-      break;
-      case '3':
-        this.contadores = [
-          {
-            Nombre: 'Total de Servicios Terminados',
-            Valor: '45', //Este valor debe ser llenado desde la BD
-            Color: 'info'
-          },
-          {
-            Nombre: 'Total de Servicios Pendientes',
-            Valor: '10',
-            Color: 'secondary'
-          },
-        ];
-      break;
-      case '4':
-        this.contadores = [
-          {
-            Nombre: 'No. Ticket en Curso',
-            Valor: '12345',
-            Color: 'info'
-          },
-          {
-            Nombre: 'Tickets Concluidos',
-            Valor: '15',
-            Color: 'secondary'
-          },
-        ];
-      break;
-    }
+    this.DataService.getContador(sessionStorage.getItem('idUser')).subscribe((res: any) => {
+      console.log(res)
+      this.terminados = res.Terminados;
+      this.pendientes = res.Pendientes;
+
+      switch (sessionStorage.getItem('idTipoUsuario')) {
+        case '2':
+          this.contadores = [
+            {
+              Nombre: 'Total de Servicios Terminados',
+              Valor: this.terminados, //Este valor debe ser llenado desde la BD
+              Color: 'info'
+            },
+            {
+              Nombre: 'Total de Servicios Pendientes',
+              Valor: this.pendientes,
+              Color: 'secondary'
+            },
+          ];
+        break;
+        case '3':
+          this.contadores = [
+            {
+              Nombre: 'Total de Servicios Terminados',
+              Valor: this.terminados, //Este valor debe ser llenado desde la BD
+              Color: 'info'
+            },
+            {
+              Nombre: 'Total de Servicios Pendientes',
+              Valor: this.pendientes,
+              Color: 'secondary'
+            },
+          ];
+        break;
+        // case '4':
+        //   this.contadores = [
+        //     {
+        //       Nombre: 'No. Ticket en Curso',
+        //       Valor: '12345',
+        //       Color: 'info'
+        //     },
+        //     {
+        //       Nombre: 'Tickets Concluidos',
+        //       Valor: '15',
+        //       Color: 'secondary'
+        //     },
+        //   ];
+        // break;
+      }
+    })
+    
   }
     
   getOpciones(): void {

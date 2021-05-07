@@ -6,11 +6,11 @@
                     <label class="col-form-label">Estatus:</label>
                 </div>
                 <div class="col-md-8">
-                    <!--<h5><span class="badge bg-danger">Nuevo</span></h5>-->
-                    <!--<h5><span class="badge bg-primary">Asignado</span></h5>-->
-                    <h5><span class="badge bg-success">En curso</span></h5>
-                    <!--<h5><span class="badge bg-warning">En revision</span></h5>-->
-                    <!--<h5><span class="badge bg-info">Aprobado</span></h5>-->
+                    <h5><span class="badge bg-danger" *ngIf="detalle.Estatus == 'Nuevo'">Nuevo</span></h5>
+                    <h5><span class="badge bg-primary" *ngIf="detalle.Estatus == 'Asignado'">{{detalle.Estatus}}</span></h5>
+                    <h5><span class="badge bg-success" *ngIf="detalle.Estatus == 'En curso,'">{{detalle.Estatus}}</span></h5>
+                    <h5><span class="badge bg-warning" *ngIf="detalle.Estatus == 'En revision'">{{detalle.Estatus}}</span></h5>
+                    <h5><span class="badge bg-info" *ngIf="detalle.Estatus == 'Aprobado/Terminado'">Aprobado</span></h5>
                 </div>
             </div>
             <div class="row mb-2">
@@ -18,7 +18,7 @@
                     <label class="col-form-label">No. Servicio:</label>
                 </div>
                 <div class="col-md-8">
-                    <input type="text" class="form-control" id="inputNoServicio" value="34567" readonly>
+                    <input type="text" class="form-control" [(ngModel)]="detalle.NoServicio" name="noservicio" id="inputNoServicio" value="34567" readonly>
                 </div>
             </div>
             
@@ -27,7 +27,7 @@
                     <label class="col-form-label">Fecha Solicitud:</label>
                 </div>
                 <div class="col-md-8">
-                    <input type="date" class="form-control" id="inputFechaSolicitud" value="2021-01-08" readonly>
+                    <input type="date" class="form-control" name="fechaSolicitud" id="inputFechaSolicitud" [value]="detalle.FechaDeSolicitud" readonly>
                 </div>
             </div>
             <div class="row mb-2">
@@ -48,7 +48,7 @@
                     <label class="col-form-label">Responsable en sitio:</label>
                 </div>
                 <div class="col-md-8">
-                    <input type="text" class="form-control" id="inputResponsable" value="Oscar Cazares" readonly>
+                    <input type="text" class="form-control" [(ngModel)]="detalle.ResponsableDelSitio" name="responsable" id="inputResponsable" value="Oscar Cazares" readonly>
                 </div>
             </div>
             <div class="row mb-2">
@@ -56,7 +56,7 @@
                     <label class="col-form-label">Empleado Asignado:</label>
                 </div>
                 <div class="col-md-8">
-                    <input type="text" class="form-control" id="inputEmpleadoAsignado" value="T2858" readonly>
+                    <input type="text" class="form-control" [(ngModel)]="detalle.NoEmpleado" name="empleadoasignado" id="inputEmpleadoAsignado" value="T2858" readonly>
                 </div>
             </div>
             <div class="row mb-2">
@@ -64,7 +64,7 @@
                     <label class="col-form-label">Empleado Invitado:</label>
                 </div>
                 <div class="col-md-8">
-                    <input type="text" class="form-control" id="inputEmpleadoInvitado" value="No aplica" readonly>
+                    <input type="text" class="form-control" id="inputEmpleadoInvitado" [value]="detalle.NoEmpleadoInvitado" readonly>
                 </div>
             </div>
         </div>
@@ -90,7 +90,7 @@
                     <label class="col-form-label">Fecha Asignacion:</label>
                 </div>
                 <div class="col-md-8">
-                    <input type="date" class="form-control" id="inputFechaAsignacion" value="2021-01-08" readonly>
+                    <input type="date" class="form-control" id="inputFechaAsignacion" [value]="detalle.FechaAsignacion" readonly>
                 </div>
             </div>
             <div class="row mb-2">
@@ -98,7 +98,7 @@
                     <label class="col-form-label">Cliente:</label>
                 </div>
                 <div class="col-md-8">
-                    <input type="text" class="form-control" id="inputFechaAsignacion" value="SAT" readonly>
+                    <input type="text" class="form-control" [(ngModel)]="detalle.NombreCliente" name="nombrecliente" id="inputFechaAsignacion" value="SAT" readonly>
                 </div>
             </div>
             <div class="row mb-2">
@@ -106,7 +106,7 @@
                     <label class="col-form-label">Sitio:</label>
                 </div>
                 <div class="col-md-8">
-                    <textarea class="form-control" id="inputSitio" rows="3" readonly>Lirio 244, Obispado Monterrey, Nuevo Leon Mexico CP 33445</textarea>
+                    <textarea class="form-control" [(ngModel)]="detalle.Sitio" name="Sitio" id="inputSitio" rows="3" readonly></textarea>
                 </div>
             </div>
             <div class="row mb-2">
@@ -114,7 +114,7 @@
                     <label class="col-form-label">Ubicacion:</label>
                 </div>
                 <div class="col-md-8">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6542.210951182794!2d-100.19903956601004!3d25.77007482098522!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x7ae43887306fe7a8!2sBanorte!5e0!3m2!1ses-419!2sus!4v1619577820750!5m2!1ses-419!2sus" width="220" height="350" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    <iframe [src]="safeUrl" width="220" height="350" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
         </div>
@@ -126,21 +126,21 @@
                 <label class="col-form-label">Asunto:</label>
             </div>
             <div class="col-md-12">
-                <textarea class="form-control" id="inputAsunto" rows="3" readonly>Problematica actual con la descripcion del cliente</textarea>
+                <textarea class="form-control" id="inputAsunto" rows="3" readonly>{{detalle.Asunto}}</textarea>
             </div>
 
             <div class="col-md-12">
                 <label class="col-form-label">Herramientas necesarias:</label>
             </div>
             <div class="col-md-12">
-                <textarea class="form-control" id="inputHerramientas" rows="3" readonly>Herramienta 1, herramienta 2, herramienta 3</textarea>
+                <textarea class="form-control" id="inputHerramientas" rows="3" readonly>{{detalle.Herramientas}}</textarea>
             </div>			
             <div class="row mb-2 mt-2">
                 <div class="col-md-3">
                     <label class="col-form-label">Descripcion:</label>
                 </div>
                 <div class="col-md-9">
-                    <input type="text" class="form-control" id="inputDescripcion" value="Telefono" readonly>
+                    <input type="text" class="form-control"  [(ngModel)]="detalle.Descripcion" name="Descripcion" id="inputDescripcion" value="Telefono" readonly>
                 </div>
             </div>
             <div class="row mb-2">
@@ -148,23 +148,23 @@
                     <label class="col-form-label">No. Serie:</label>
                 </div>
                 <div class="col-md-9">
-                    <input type="text" class="form-control" id="inputNoSerie" value="ABC12345" readonly>
+                    <input type="text" class="form-control" [(ngModel)]="detalle.NoSerieProducto" name="noserieproducto" id="inputNoSerie" value="ABC12345" readonly>
                 </div>
             </div>
             <div class="col-md-12 mt-1">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" disabled="true">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="1" disabled="true" [checked]="detalle.idTipoMovProducto == 1">
                 <label class="form-check-label">
                   Reemplazo
                 </label>
             </div>
             <div class="col-md-12 mt-1">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"  disabled="true">
+                <input class="form-check-input"  type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="2" disabled="true" [checked]="detalle.idTipoMovProducto == 2">
                 <label class="form-check-label">
                   Reparacion
                 </label>
             </div>
             <div class="col-md-12 mt-1">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"  disabled="true">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="3"  disabled="true" [checked]="detalle.idTipoMovProducto == 3">
                 <label class="form-check-label">
                   Nuevo
                 </label>
@@ -173,7 +173,7 @@
                 <label class="col-form-label">Actividaes Realizadas:</label>
             </div>
             <div class="col-md-12">
-                <textarea class="form-control" id="inputActividades" rows="3" readonly>Se realiza cambio de telefono a peticion del cliente</textarea>
+                <textarea class="form-control" id="inputActividades" rows="3" readonly>{{detalle.ActividadesRealizadas}}</textarea>
             </div>
         </div>
     </div>
@@ -200,11 +200,13 @@
         </div>
         <div class="col-md-6 mt-5">
             <div class="d-grid gap-2 col-6 mx-auto">
-                <button class="btn btn-success" type="button">INICIAR</button>
-                 <button class="btn btn-info" type="button">Finalizar Servicio</button>
-                <button class="btn btn-secondary" type="button">Guardar Reporte</button>
+                <button class="btn btn-success" type="button" (click)="accion('Iniciar')" >INICIAR</button>
+                 <button class="btn btn-info" type="button" (click)="accion('Finalizar')" >Finalizar Servicio</button>
+                <button class="btn btn-secondary" type="button" (click)="accion('Guardar')">Guardar Reporte</button>
             </div>
         </div>
     </div>
 
 </div>
+
+<app-modal [text]="text" [(open)]="open"></app-modal>
