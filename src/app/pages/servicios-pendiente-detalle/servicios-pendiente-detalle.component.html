@@ -173,7 +173,7 @@
                 <label class="col-form-label">Actividaes Realizadas:</label>
             </div>
             <div class="col-md-12">
-                <textarea class="form-control" id="inputActividades" rows="3" readonly>{{detalle.ActividadesRealizadas}}</textarea>
+                <textarea class="form-control" id="inputActividades" rows="3" [readonly]="tipoUsuario==1">{{detalle.ActividadesRealizadas}}</textarea>
             </div>
         </div>
     </div>

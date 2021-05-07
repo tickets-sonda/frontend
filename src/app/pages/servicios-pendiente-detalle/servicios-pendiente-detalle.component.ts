@@ -11,6 +11,7 @@ import { DetalleInterface } from 'src/app/core/model/detalle.interface';
 })
 export class ServiciosPendienteDetalleComponent implements OnInit {
   id;
+  tipoUsuario = sessionStorage.getItem('idTipoUsuario');
   detalle = {
     NoServicio: 0,
     FechaInicio: '',
