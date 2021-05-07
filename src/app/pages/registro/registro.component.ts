@@ -120,7 +120,8 @@ export class RegistroComponent implements OnInit {
 
   registrarEmpresaCliente(empresa) {
     this.dataService.postEmpresaCliente(empresa).subscribe((res: any) => {
-      this.text = `Su ID de usuario es: ${res.Usuario} y su ID de empresa es: ${res.idEmpresaCLiente}`;
+      console.log(res)
+      this.text = `Su ID de usuario es: ${res.Usuario} y su ID de empresa es: ${res.idEmpresaCliente}`;
     });
   }
 
