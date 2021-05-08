@@ -23,7 +23,7 @@ export class MdaServicioAsignacionComponent implements OnInit {
     Prioridad: '',
     Estatus: '',
     Sitio: '',
-    ubicacion: '' ,
+    ubicacion: '',
     ResponsableDelSitio: '',
     Asunto: '',
     RutaDescarga: '',
@@ -31,6 +31,14 @@ export class MdaServicioAsignacionComponent implements OnInit {
     NombreTipoServicio: 'Seleccione',
     idMunicipio: 0,
     NombreCliente: '',
+    NoEmpleadoInvitado: '',
+    NoEmpleado: 0,
+    Herramientas: '',
+    NoSerieProducto: '',
+    ActividadesRealizadas: '',
+    idTipoMovProducto: 0,
+    Descripcion: '',
+    idTipoServicio:'',
   }
 
   prioridades = [
@@ -42,8 +50,11 @@ export class MdaServicioAsignacionComponent implements OnInit {
   sanitizedurl: any;
 
   tipoServicios = [
-    {   idTipoServicio: 0,
-    NombreTipoServicio: "Seleccione"}
+    {  idTipoServicio: 0, NombreTipoServicio: "Seleccione"}
+  ]
+
+  comboMDAEmpleados = [
+    { NoEmpleado: 0, NombreEmpleado: "Seleccione"}
   ]
   constructor(private route: ActivatedRoute, private dataService: DataService, private sanitizer: DomSanitizer) { }
 
@@ -53,12 +64,21 @@ export class MdaServicioAsignacionComponent implements OnInit {
     });
     this.getDetalle();
     this.getTiposServicios();
+    this.getMDAEmpleadosCombo();
+    // this.getEmpleadoSeleccionado();
   }
 
   getDetalle(){
     this.dataService.getDetalle(this.id).subscribe((res: any) => {
-      console.log(this.detalle)
+      console.log('res', res);
       this.detalle = res;
+      let fechaSolicitud = res.FechaDeSolicitud.split('T');
+      this.detalle.FechaDeSolicitud = fechaSolicitud[0];
+      let fechaAsignacion = res.FechaAsignacion.split('T');
+      this.detalle.FechaDeSolicitud = fechaAsignacion[0];
+      console.log('DETALLEEEEEEEEEEEEE',this.detalle)
+      console.log('fecha', this.detalle.FechaDeSolicitud);
+      this.detalle.NoEmpleado = 0;
       if(res){
       this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(res.ubicacion);
      }
@@ -76,5 +96,25 @@ export class MdaServicioAsignacionComponent implements OnInit {
       }
     })
   }
+
+  getMDAEmpleadosCombo() {
+    let mdaEmpleadosCombo;
+    this.dataService.getMDAEmpleadosCombo().subscribe((res: any) => {
+      console.log('comboooo', res); 
+      mdaEmpleadosCombo = res;
+      for (let empleado of mdaEmpleadosCombo) {
+        this.comboMDAEmpleados.push(empleado);
+      }
+      console.log('combo mda empleados', this.comboMDAEmpleados);
+    })
+  }
+
+  // getEmpleadoSeleccionado() {
+  //   this.dataService.getEmpleadoSeleccionado(1).subscribe((res:any)=>{ 
+  //     console.log('seleccionado',res);
+  //     // this.detalle.NombreEmpleado = res.Message; 
+
+  //   })
+  // }
 
 }
