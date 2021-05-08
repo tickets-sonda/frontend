@@ -11,7 +11,7 @@ import { DetalleInterface } from 'src/app/core/model/detalle.interface';
 })
 export class ServiciosPendienteDetalleComponent implements OnInit {
   id;
-  tipoUsuario = sessionStorage.getItem('idTipoUsuario');
+  tipoUsuario;
   detalle = {
     NoServicio: 0,
     FechaInicio: '',
@@ -50,6 +50,7 @@ export class ServiciosPendienteDetalleComponent implements OnInit {
       console.log('ID', this.id);
     })
     this.getDetalle();
+    this.tipoUsuario = sessionStorage.getItem('idTipoUsuario');
     console.log('tipo usuariooo',this.tipoUsuario);
   }
 
@@ -82,7 +83,10 @@ export class ServiciosPendienteDetalleComponent implements OnInit {
       NumSerieProducto: this.detalle.NoSerieProducto,
       idTipoMovProducto: this.detalle.idTipoMovProducto,
       NoEmpleadoAsig: this.detalle.NoEmpleado,
-      NoEmpleadoInvi:this.detalle.NoEmpleadoInvitado 
+      NoEmpleadoInvi:this.detalle.NoEmpleadoInvitado,
+      FechaInicio: this.detalle.FechaInicio,
+      FechaFin: this.detalle.FechaFin,
+      ActividadesRealizadas: this.detalle.ActividadesRealizadas
     }
     this.dataService.updateServicioEstatus(servicioEstatus).subscribe((res: any) => {
       console.log(res)

@@ -1,5 +1,5 @@
-
-	<div class="container" *ngIf="detalle">
+	{{detalle.Estatus}}
+	<div class="container" *ngIf="detalle.Estatus === 'Nuevo'">
 		<div class="row mt-5">
 		    <div class="col-md-4">
 		    	<div class="row mb-2">
@@ -32,7 +32,7 @@
 						<label class="col-form-label">Fecha Solicitud:</label>
 					</div>
 					<div class="col-md-8">
-				    	<input [(ngModel)]="detalle.NoServicio" name="noservicio" type="date" class="form-control" id="inputFechaSolicitud" value="2021-01-08" readonly>
+				    	<input [(ngModel)]="detalle.FechaDeSolicitud" name="noservicio" type="date" class="form-control" id="inputFechaSolicitud" value="2021-01-08" readonly>
 					</div>
 				</div>
 				<div class="row mb-2">
@@ -127,14 +127,14 @@
 					<label class="col-form-label">Herramientas necesarias:</label>
 				</div>
 				<div class="col-md-12">
-			    	<textarea class="form-control" id="inputHerramientas" rows="3">Herramienta 1, herramienta 2, herramienta 3</textarea>
+			    	<textarea class="form-control" [(ngModel)]="detalle.Herramientas" name="herramientas" id="inputHerramientas" rows="3">Herramienta 1, herramienta 2, herramienta 3</textarea>
 				</div>			
 				<div class="row mb-2 mt-2">
 			    	<div class="col-md-3">
 						<label class="col-form-label">Descripcion:</label>
 					</div>
 					<div class="col-md-9">
-				    	<input type="text" class="form-control" id="inputDescripcion" value="Telefono">
+				    	<input type="text" class="form-control" [(ngModel)]="detalle.Descripcion" name="descripcion" id="inputDescripcion" value="Telefono">
 					</div>
 				</div>
 				<div class="row mb-2">
@@ -142,24 +142,24 @@
 						<label class="col-form-label">No. Serie:</label>
 					</div>
 					<div class="col-md-9">
-				    	<input type="text" class="form-control" id="inputNoSerie" value="ABC12345">
+				    	<input type="text" class="form-control" id="inputNoSerie" [(ngModel)]="detalle.NoSerieProducto" name="noserieproducto">
 					</div>
 				</div>
 				<div class="col-md-12 mt-1">
-			    	<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-					<label class="form-check-label">
+			    	<input class="form-check-input" type="radio" name="flexRadioDefault" id="reemplazo">
+					<label class="form-check-label" for="reemplazo">
 					  Reemplazo
 					</label>
 				</div>
 				<div class="col-md-12 mt-1">
-			    	<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-					<label class="form-check-label">
+			    	<input class="form-check-input" type="radio" name="flexRadioDefault" id="reparacion">
+					<label class="form-check-label" for="reparacion">
 					  Reparacion
 					</label>
 				</div>
 				<div class="col-md-12 mt-1">
-			    	<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-					<label class="form-check-label">
+			    	<input class="form-check-input" type="radio" name="flexRadioDefault" id="nuevo">
+					<label class="form-check-label" for="nuevo">
 					  Nuevo
 					</label>
 				</div>
@@ -174,15 +174,17 @@
 						<label class="col-form-label">No. Empleado Asignado:</label>
 					</div>
 					<div class="col-md-8">
-				    	<select class="form-select" id="selectEmpleadoAsignado">
-							<option selected>Seleccione...</option>
-					    	<option value="1">11145</option>
-						    <option value="2">11146</option>
-						    <option value="3">11147</option>
-						</select>
+						<select name="miselect" class="form-select" (change)="getEmpleadoSeleccionado($event)"[(ngModel)]="detalle.NoEmpleado">
+							<option
+							  [value]="empleado.NoEmpleado"
+							  *ngFor="let empleado of comboMDAEmpleados"
+							>
+							  {{ empleado.NombreEmpleado }}
+							</option>
+						  </select>
 					</div>
 					<div class="col-md-12 mt-2">
-				    	<input type="text" class="form-control text-center" id="inputNombreEmpleado" value="Juan Luis Lopez" readonly>
+				    	<input type="text" class="form-control text-center" [(ngModel)]="EmpleadoSeleccionado" name="empleadoSeleccionado" id="inputNombreEmpleado" value="Juan Luis Lopez" readonly>
 					</div>
 				</div>
 				<div class="row mt-2">
@@ -190,22 +192,24 @@
 						<label class="col-form-label">No. Empleado Invitado:</label>
 					</div>
 					<div class="col-md-8">
-				    	<select class="form-select" id="selectEmpleadoAsignado">
-							<option selected>No Aplica</option>
-					    	<option value="1">11145</option>
-						    <option value="2">11146</option>
-						    <option value="3">11147</option>
-						</select>
+						<select name="miselect" class="form-select" (change)="getEmpledoInvitadoSeleccionado($event)" [(ngModel)]="detalle.NoEmpleadoInvitado">
+							<option
+							  [value]="empleado.NoEmpleado"
+							  *ngFor="let empleado of comboMDAEmpleados"
+							>
+							  {{ empleado.NombreEmpleado }}
+							</option>
+						  </select>
 					</div>
 					<div class="col-md-12 mt-2">
-				    	<input type="text" class="form-control text-center" id="inputNombreEmpleado" value="No Aplica" readonly>
+				    	<input type="text" class="form-control text-center" [(ngModel)]="EmpleadoInvitadoSeleccionado" name="EmpleadoInvitadoSeleccionado" id="inputNombreEmpleado" value="No Aplica" readonly>
 					</div>
 				</div>
 			</div>
 			<div class="col-md-6 mt-5">
 				<div class="d-grid gap-2 col-6 mx-auto">
-				  <button class="btn btn-info" type="button">Guardar Asignacion</button>
-				  <button class="btn btn-secondary" type="button">Cancelar</button>
+				  <button class="btn btn-info" type="button" (click)="accion('Asignar')">Guardar Asignacion</button>
+				  <button class="btn btn-secondary" type="button" (click)="reset()">Cancelar</button>
 				</div>
 			</div>
 		</div>
@@ -214,3 +218,5 @@
 	<div class="container" *ngIf="detalle === null">
 		<h1>Hey no hay nada para este id</h1>
 	</div>
+
+	<app-modal [text]="text" [(open)]="open"></app-modal>

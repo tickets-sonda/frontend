@@ -31,7 +31,7 @@ export class MdaServicioAsignacionComponent implements OnInit {
     NombreTipoServicio: 'Seleccione',
     idMunicipio: 0,
     NombreCliente: '',
-    NoEmpleadoInvitado: '',
+    NoEmpleadoInvitado: 0,
     NoEmpleado: 0,
     Herramientas: '',
     NoSerieProducto: '',
@@ -41,11 +41,17 @@ export class MdaServicioAsignacionComponent implements OnInit {
     idTipoServicio:'',
   }
 
+  open = false;
+  text = '';
+
   prioridades = [
     {name: 'Alta'},
     {name: 'Media'},
     {name: 'Baja'},
   ]
+
+  EmpleadoSeleccionado: any;
+  EmpleadoInvitadoSeleccionado: any;
 
   sanitizedurl: any;
 
@@ -65,7 +71,6 @@ export class MdaServicioAsignacionComponent implements OnInit {
     this.getDetalle();
     this.getTiposServicios();
     this.getMDAEmpleadosCombo();
-    // this.getEmpleadoSeleccionado();
   }
 
   getDetalle(){
@@ -74,11 +79,14 @@ export class MdaServicioAsignacionComponent implements OnInit {
       this.detalle = res;
       let fechaSolicitud = res.FechaDeSolicitud.split('T');
       this.detalle.FechaDeSolicitud = fechaSolicitud[0];
-      let fechaAsignacion = res.FechaAsignacion.split('T');
-      this.detalle.FechaDeSolicitud = fechaAsignacion[0];
+      if(res.FechaAsignacion) {
+        let fechaAsignacion = res.FechaAsignacion.split('T');
+        this.detalle.FechaAsignacion = fechaAsignacion[0];
+      }
       console.log('DETALLEEEEEEEEEEEEE',this.detalle)
       console.log('fecha', this.detalle.FechaDeSolicitud);
       this.detalle.NoEmpleado = 0;
+      this.detalle.NoEmpleadoInvitado = 0;
       if(res){
       this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(res.ubicacion);
      }
@@ -106,6 +114,52 @@ export class MdaServicioAsignacionComponent implements OnInit {
         this.comboMDAEmpleados.push(empleado);
       }
       console.log('combo mda empleados', this.comboMDAEmpleados);
+    })
+  }
+
+  getEmpleadoSeleccionado(event) {
+    let value = event.target.value;
+    console.log(value);
+    this.dataService.getEmpleadoSeleccionado(value).subscribe((res:any) => {
+      console.log(res);
+      this.EmpleadoSeleccionado = res.Message;
+    })
+  }
+
+  getEmpledoInvitadoSeleccionado(event) {
+    let value = event.target.value;
+    console.log(value);
+    this.dataService.getEmpleadoSeleccionado(value).subscribe((res:any) => {
+      this.EmpleadoInvitadoSeleccionado = res.Message;
+      console.log(this.EmpleadoInvitadoSeleccionado);
+    })
+  }
+
+  reset(){
+    window.location.reload();
+  }
+
+  accion(value) {
+    console.log(value)
+    let servicioEstatus = {
+      Accion: value,
+      NoServicioA: this.detalle.NoServicio,
+      Prioridad: this.detalle.Prioridad,
+      IdTipoServicio: this.detalle.idTipoServicio,
+      FechaAsignacion: this.detalle.FechaDeSolicitud,
+      Herramientas: this.detalle.Herramientas,
+      Descripcion: this.detalle.Descripcion,
+      NumSerieProducto: this.detalle.NoSerieProducto,
+      idTipoMovProducto: this.detalle.idTipoMovProducto,
+      NoEmpleadoAsig: this.detalle.NoEmpleado,
+      NoEmpleadoInvi:this.detalle.NoEmpleadoInvitado,
+      FechaInicio: this.detalle.FechaInicio,
+      FechaFin: this.detalle.FechaFin,
+      ActividadesRealizadas: this.detalle.ActividadesRealizadas
+    }
+    this.dataService.updateServicioEstatus(servicioEstatus).subscribe((res: any) => {
+      console.log(res)
+      this.text = `Estatus actual: ${res.Estatus}`;
     })
   }
 

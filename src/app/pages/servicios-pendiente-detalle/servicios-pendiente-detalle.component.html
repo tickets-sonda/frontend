@@ -8,7 +8,7 @@
                 <div class="col-md-8">
                     <h5><span class="badge bg-danger" *ngIf="detalle.Estatus == 'Nuevo'">Nuevo</span></h5>
                     <h5><span class="badge bg-primary" *ngIf="detalle.Estatus == 'Asignado'">{{detalle.Estatus}}</span></h5>
-                    <h5><span class="badge bg-success" *ngIf="detalle.Estatus == 'En curso,'">{{detalle.Estatus}}</span></h5>
+                    <h5><span class="badge bg-success" *ngIf="detalle.Estatus == 'En curso'">{{detalle.Estatus}}</span></h5>
                     <h5><span class="badge bg-warning" *ngIf="detalle.Estatus == 'En revision'">{{detalle.Estatus}}</span></h5>
                     <h5><span class="badge bg-info" *ngIf="detalle.Estatus == 'Aprobado/Terminado'">Aprobado</span></h5>
                 </div>
@@ -170,10 +170,10 @@
                 </label>
             </div>
             <div class="col-md-12">
-                <label class="col-form-label">Actividaes Realizadas:</label>
+                <label class="col-form-label">Actividades Realizadas:</label>
             </div>
             <div class="col-md-12">
-                <textarea class="form-control" id="inputActividades" rows="3" [readonly]="tipoUsuario==='1'">{{detalle.ActividadesRealizadas}}</textarea>
+                <textarea class="form-control" [(ngModel)]="detalle.ActividadesRealizadas" name="ActividadesRealizadas" id="inputActividades" rows="3" [readonly]="tipoUsuario==='1'"></textarea>
             </div>
         </div>
     </div>
@@ -199,10 +199,13 @@
             </div>
         </div>
         <div class="col-md-6 mt-5">
-            <div class="d-grid gap-2 col-6 mx-auto">
+            <div class="d-grid gap-2 col-6 mx-auto"  *ngIf="tipoUsuario==='3' && detalle.Estatus !== 'En revision'">
                 <button class="btn btn-success" type="button" (click)="accion('Iniciar')" >INICIAR</button>
                  <button class="btn btn-info" type="button" (click)="accion('Finalizar')" >Finalizar Servicio</button>
                 <button class="btn btn-secondary" type="button" (click)="accion('Guardar')">Guardar Reporte</button>
+            </div>
+            <div class="d-grid gap-2 col-6 mx-auto"  *ngIf="tipoUsuario==='2' && detalle.Estatus=='En revision'">
+                <button class="btn btn-success" type="button" (click)="accion('Aprobar/Terminar')" >Aprobar</button>
             </div>
         </div>
     </div>

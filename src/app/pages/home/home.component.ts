@@ -55,20 +55,20 @@ export class HomeComponent implements OnInit {
             },
           ];
         break;
-        // case '4':
-        //   this.contadores = [
-        //     {
-        //       Nombre: 'No. Ticket en Curso',
-        //       Valor: '12345',
-        //       Color: 'info'
-        //     },
-        //     {
-        //       Nombre: 'Tickets Concluidos',
-        //       Valor: '15',
-        //       Color: 'secondary'
-        //     },
-        //   ];
-        // break;
+        case '4':
+          this.contadores = [
+            {
+              Nombre: 'Tickets en curso',
+              Valor: this.pendientes,
+              Color: 'info'
+            },
+            {
+              Nombre: 'Tickets Concluidos',
+              Valor:  this.terminados,
+              Color: 'secondary'
+            },
+          ];
+        break;
       }
     })
     

@@ -139,7 +139,7 @@ export class DataService {
 
   getContador(empleado) {
     let body = {
-      NoEmpleado:empleado,
+      idUser:empleado,
     };
     console.log('body', body);
     return this.http.post(`${this.API}contador`, body, {

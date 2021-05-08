@@ -15,7 +15,8 @@ export class LoginComponent implements OnInit {
     tipo: 0,
   };
   tiposUsuarios = [{ idTipoUsuario: 0, NombreTipoUser: 'Tipo de usuario' }];
-
+  open = false;
+  text = '';
   constructor(private dataService: DataService, private router: Router) {}
 
   ngOnInit(): void {
@@ -26,7 +27,7 @@ export class LoginComponent implements OnInit {
     this.dataService
       .login(usertype, username, password)
       .subscribe((resp: Usuario) => {
-        console.log('resp', resp);
+        this.text = resp.Message;
         if (resp) {
           if (resp.idUser) {
             sessionStorage.setItem('NoEmpleado', resp.NoEmpleado.toString());

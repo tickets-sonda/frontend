@@ -9,4 +9,5 @@ export interface Usuario {
   idEmpresaCliente: number;
   idTipoUsuario: number;
   idUser: string;
+  Message?:string;
 }
