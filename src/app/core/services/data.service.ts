@@ -147,5 +147,18 @@ export class DataService {
     });
   }
   
+  getEmpleadoSeleccionado(empleado) {
+    let body = {
+      NoEmpleado:empleado,
+    };
+    console.log('body', body);
+    return this.http.post(`${this.API}empleado-seleccionado`, body, {
+      headers: new HttpHeaders().set('Content-Type', 'application/json'),
+    });
+  }
+  
+  getMDAEmpleadosCombo() {
+    return this.http.get(`${this.API}mda/combo/empleados`);
+  }
 
 }

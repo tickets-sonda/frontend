@@ -36,7 +36,8 @@ export class ServiciosPendienteDetalleComponent implements OnInit {
     NoSerieProducto: '',
     ActividadesRealizadas: '',
     idTipoMovProducto: 0,
-    Descripcion: ''
+    Descripcion: '',
+    idTipoServicio:'',
   };
   open = false;
   text = '';
@@ -49,6 +50,7 @@ export class ServiciosPendienteDetalleComponent implements OnInit {
       console.log('ID', this.id);
     })
     this.getDetalle();
+    console.log('tipo usuariooo',this.tipoUsuario);
   }
 
   getDetalle() {
@@ -73,7 +75,7 @@ export class ServiciosPendienteDetalleComponent implements OnInit {
       Accion: value,
       NoServicioA: this.detalle.NoServicio,
       Prioridad: this.detalle.Prioridad,
-      IdTipoServicio: this.detalle.NombreTipoServicio,
+      IdTipoServicio: this.detalle.idTipoServicio,
       FechaAsignacion: this.detalle.FechaDeSolicitud,
       Herramientas: this.detalle.Herramientas,
       Descripcion: this.detalle.Descripcion,
